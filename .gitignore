@@ -1,0 +1,32 @@
+# Java / Spring Boot
+backend/target/
+backend/.idea/
+backend/*.log
+
+# Maven
+backend/.mvn/wrapper/maven-wrapper.jar
+
+# Angular / Node
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+frontend/.env
+
+# Environment files
+.env
+*.env
+application-local.properties
+
+# IDE / Editor
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Zip files
+*.zip
