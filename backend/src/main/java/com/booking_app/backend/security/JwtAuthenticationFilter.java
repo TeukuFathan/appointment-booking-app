@@ -12,9 +12,10 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+
 import java.io.IOException;
 import java.util.Collections;
-
+// Need to redo this shit , i dont understand shit in this part
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 

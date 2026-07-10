@@ -13,6 +13,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
+// Need to redo this shit , i dont understand shit in this part
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
