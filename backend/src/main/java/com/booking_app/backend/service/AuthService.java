@@ -16,24 +16,28 @@ public class AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
+    
 
     public AuthService(
+            JwtService jwtService,
             UserRepository userRepository,
             PasswordEncoder passwordEncoder
     ) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtService =  jwtService;
     }
 
     public AuthResponse register(RegisterRequest request) {
         // check if the email already being use
         if (userRepository.existsByEmail(request.getEmail())) {
-            return new AuthResponse("Email already exists");
+            return new AuthResponse("Email already exists", null);
         }
 
         // check if the busines name already exist 
         if (userRepository.existsByBusinessSlug(request.getBusinessSlug())) {
-            return new AuthResponse("Business slug already exists");
+            return new AuthResponse("Business slug already exists", null);
         }
 
         // maybe add somekind of email authentification part ?
@@ -46,7 +50,7 @@ public class AuthService {
 
         userRepository.save(user);
 
-        return new AuthResponse("User registered successfully");
+        return new AuthResponse("User registered successfully", null);
     }
 
     public AuthResponse login(LoginRequest request) {
@@ -54,7 +58,7 @@ public class AuthService {
                 .orElse(null);
 
         if (user == null) {
-            return new AuthResponse("Invalid email or password");
+            return new AuthResponse("Invalid email or password", null);
         }
 
         boolean passwordMatches = passwordEncoder.matches(
@@ -63,9 +67,9 @@ public class AuthService {
         );
 
         if (!passwordMatches) {
-            return new AuthResponse("Invalid email or password");
+            return new AuthResponse("Invalid email or password", null);
         }
+        String token = jwtService.generateToken(user.getEmail());
 
-        return new AuthResponse("Login successful");
-    }
+        return new AuthResponse("Login successful", token);    }
 }
