@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.booking_app.backend.dto.BusinessServiceRequest;
 import com.booking_app.backend.dto.BusinessServiceResponse;
-import com.booking_app.backend.entity.BusinessService;
 import com.booking_app.backend.service.BusinessServiceService;
 
 import java.util.List;
