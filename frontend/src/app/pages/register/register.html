@@ -1,36 +1,54 @@
-<form (ngSubmit)="register()">
-<input
+<form [formGroup]="registerForm" (ngSubmit)="register()">
+  <input
     type="name"
-    name="name"
-    [(ngModel)]="form.name"
+    formControlName="name"
     placeholder="name"
   />
+  @if ( 
+    registerForm.controls.name.touched && registerForm.controls.name.hasError('required')
+  ){
+    <p> name is required !</p>
+  }
   <input
     type="email"
-    name="email"
-    [(ngModel)]="form.email"
+    formControlName="email"
     placeholder="Email"
   />
-
+  @if ( 
+    registerForm.controls.email.touched && registerForm.controls.email.hasError('required')
+  ){
+    <p> email is required !</p>
+  }
   <input
     type="password"
-    name="password"
-    [(ngModel)]="form.password"
+    formControlName="password"
     placeholder="Password"
   />
+      @if ( 
+    registerForm.controls.password.touched && registerForm.controls.password.hasError('required')
+  ){
+    <p> password is required !</p>
+  }
   <input
     type="businessName"
-    name="businessName"
-    [(ngModel)]="form.businessName"
+    formControlName="businessName"
     placeholder="businessName"
   />
+    @if ( 
+    registerForm.controls.businessName.touched && registerForm.controls.businessName.hasError('required')
+  ){
+    <p> business Name is required !</p>
+  }
   <input
     type="businessSlug"
-    name="businessSlug"
-    [(ngModel)]="form.businessSlug"
+    formControlName="businessSlug"
     placeholder="businessSlug"
   />
-  
+      @if ( 
+    registerForm.controls.businessSlug.touched && registerForm.controls.businessSlug.hasError('required')
+  ){
+    <p> Business Slug is required !</p>
+  }
 
   <button type="submit">Register</button>
 </form>
