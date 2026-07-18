@@ -29,14 +29,17 @@ export class Login {
   
   login() :  void {  
     this.auth.login(this.loginForm.getRawValue()).subscribe({
-      next : response => console.log(response)
+      next : response => {
+        console.log(response);
+        console.log(this.getUserRespData());
+      }
     });
   }
 
   // return observable that receive/subscribe the data the request go from the service to here 
-  getUserData() : void  {
+  getUserRespData() : void  {
     // send the data to the getUserByEmailFunction
-    this.user.getUserByEmail(this.loginForm.controls['email'].value)
+    this.user.getUserResponseByEmail(this.loginForm.controls['email'].value)
     // subscribe to it 
     // open a listener if it return 200> , <300 then receive the respond body through next
     .subscribe({
@@ -44,6 +47,5 @@ export class Login {
       error : (err) => console.error(err)
     })
   }
-
 
 }
